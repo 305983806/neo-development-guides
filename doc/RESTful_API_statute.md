@@ -33,7 +33,7 @@
 ### （二）返回处理
 
 1. 【强制】调用 API 服务后返回数据采用统一格式，返回的 HTTP 状态码为 2xx，代表调用成功
-   > 正例：
+   正例：
    ```json
     Request URL: http://localhost:8080/orders/1
     Request Method: GET
@@ -51,7 +51,7 @@
    > 说明：调用成功不代表当前请求业务通过，仅仅代表该请求有正确且合法的响应。更多说明请看后面的规约。
 
 2. 【强制】调用接口出错后，将不会返回结果数据，错误结果分为业务错误与系统错误，当用户访问 API 出错时，API 会返回给用户一个合适的 2xx，4xx 或者 5xx 的 HTTP 状态码；以及一个 text/xml 格式的消息体。错误响应的消息体例子如下：
-   > 业务错误
+   业务错误
    ```json
     Request URL: http://localhost:8080/courses?name=%E7%8E%8B%E4%BA%94
     Request Method: GET
@@ -63,7 +63,7 @@
         "message": "该学生还未注册任何课程。"
     }
    ```
-   > 系统错误
+   系统错误
    ```json
     Request URL: http://localhost:8080/courses
     Request Method: GET
@@ -84,4 +84,35 @@
    >
    > 针对系统错误，开发者可以提供一套「公共错误码」；而对于业务错误，则需要各业务服务实现。
 
-3. 有朝一日
+3. 【强制】对于获取集合的接口，当查不到集合数据时，应返回空数组。
+   
+   正例：
+   ```json
+    Request URL:  http://192.168.206.25:8080/courses?name=张三
+    Request Method: GET
+    Status Code: 200 
+    {
+        "requestId": "46e4f4c6f1544996bafd8ae302320e25",
+        "code": "0",
+        "message": "OK",
+        "result": {
+            "courses": []
+        }
+    }
+   ```
+   反例：
+   ```json
+    Request URL:  http://192.168.206.25:8080/courses?name=张三
+    Request Method: GET
+    Status Code: 200 
+    {
+        "requestId": "46e4f4c6f1544996bafd8ae302320e25",
+        "code": "0",
+        "message": "OK",
+        "result": {
+            "courses": null
+        }
+    }
+   ```
+   
+
