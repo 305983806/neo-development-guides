@@ -2,7 +2,7 @@
 
 ### （一）URL 设计
 
-1. 【强制】对于 API的设计需要遵循“动词 + 宾语”的结构，比如，`GET /orders`。动词通常就是五种 HTTP 方法：GET(Read)、POST(Create)、PUT(Update)、PATCH(部分Update)、DELETE(Delete)，对应 CURD 操作；宾语就是 API 的 URL。
+1. 【推荐】对于 API的设计需要遵循“动词 + 宾语”的结构，比如，`GET /orders`。动词通常就是五种 HTTP 方法：GET(Read)、POST(Create)、PUT(Update)、PATCH(部分Update)、DELETE(Delete)，对应 CURD 操作；宾语就是 API 的 URL。
     > 正例：
     > - GET /orders：获得所有订单
     > - POST /orders：新建一张订单
